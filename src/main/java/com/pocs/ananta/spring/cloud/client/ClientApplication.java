@@ -33,6 +33,15 @@ public class ClientApplication {
 	public String callService() {
 
 		RestTemplate restTemplate = restTemplateBuilder.build();
+
+		/*
+		 * Alternatively, we can inject or Autowire DiscoveryClient client
+		 * 
+		 * List<ServiceInstance> instances = client.getInstances("service-id");
+		 */
+
+		// First arg is the service name and the second arg is to indicate
+		// whether it is secured or not
 		InstanceInfo instanceInfo = eurekaClient.getNextServerFromEureka("spring-cloud-service", false);
 
 		String baseUrl = instanceInfo.getHomePageUrl();
